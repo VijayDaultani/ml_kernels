@@ -36,3 +36,12 @@ def print_coefficients(model):
     w.reverse()
     print np.poly1d(w)
 
+
+# In[ ]:
+
+"""
+Write wrapper for translating from string (i.e. feature name) to numpy array from data
+"""
+def string_numpyndarray(feature_matrix, ):
+    return
+

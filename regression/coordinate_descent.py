@@ -1,12 +1,12 @@
 
 # coding: utf-8
 
-# In[11]:
+# In[1]:
 
 import numpy as np
 
 
-# In[12]:
+# In[7]:
 
 """
 Perform the prediction on the data
@@ -16,7 +16,7 @@ def predict_output(feature_matrix,weights):
     return predictions
 
 
-# In[13]:
+# In[8]:
 
 """
 Single Coordinate Descent Step
@@ -43,10 +43,10 @@ def lasso_coordiante_descent_step(i, feature_matrix, output, weights, l1_penalty
     return new_weight_i
 
 
-# In[14]:
+# In[9]:
 
 """
-Cyclical Coordinate Descent Step
+Cyclical Coordinate Descent
 """
 def lasso_cyclical_coordinate_descent(feature_matrix, output, initial_weights, l1_penalty, tolerance):
     change = np.zeros(len(initial_weights))

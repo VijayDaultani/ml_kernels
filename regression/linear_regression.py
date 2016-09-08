@@ -10,7 +10,7 @@
 
 # # Step 1 : Import Necessary Libraries
 
-# In[2]:
+# In[26]:
 
 """
 First of all we will import necessary packages required for our tasks of exploration,
@@ -40,7 +40,7 @@ import coordinate_descent as coor
 
 # # Step 2 : Load data 
 
-# In[3]:
+# In[27]:
 
 """
 Load data in abalone_df Pandas DataFrame
@@ -55,7 +55,7 @@ abalone_df = pd.read_csv("../../data/abalone/Dataset.data", delimiter=" ",
 
 # # Step 3 : Start exploring dataset 
 
-# In[4]:
+# In[28]:
 
 #First of all lets look how big the dataset is using len function
 print "Number of Observations in the dataset : " + str(len(abalone_df))
@@ -70,15 +70,21 @@ abalone_df.head()
 # * Look for High leverage and Influential observations in the code.
 # * Divide data into training, validation and test set
 
-# In[5]:
+# In[32]:
 
 """
 First of all normalize all the features present in the dataset. 
 We use function as_matrix of pandas to create the numpy into its numpy array representation
 """
-abalone_df_normalized, norms = normalize_features(abalone_df.as_matrix(columns=['Length','Diameter','Height', 
+abalone_df_normalized, norms = prep.normalize_features(abalone_df.as_matrix(columns=['Length','Diameter','Height', 
                                 'Whole weight', 'Shucked weight', 'Viscera weight',
                                 'Shell weight', 'Rings']))
+#In numpy use .shape to see the shape of the matrix
+#print abalone_df_normalized.shape
+#Take out column
+output = abalone_df_normalized[:,7]
+print output.shape
+#Remove output i.e. Rings column from feature table
 
 
 # # Regression Method 1 : Least square regression
@@ -98,8 +104,12 @@ abalone_df_normalized, norms = normalize_features(abalone_df.as_matrix(columns=[
 # * Evaluate on test data
 # * Implement debiasing (lasso followed by least square (not regularization)
 
-# In[7]:
+# In[30]:
 
+l1_penalty = 100
+tolerance = 1
+output = abalone_df_normalized
+initial_weights = np.zeros(7)
 weights = coordinate_descent.lasso_cyclical_coordinate_descent(abalone_df_normalized, output,
                                             initial_weights, l1_penalty, tolerance)
 
