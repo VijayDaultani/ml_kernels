@@ -10,7 +10,7 @@
 
 # # Step 1 : Import Necessary Libraries
 
-# In[ ]:
+# In[2]:
 
 """
 First of all we will import necessary packages required for our tasks of exploration,
@@ -31,16 +31,16 @@ import warnings
 warnings.filterwarnings("ignore")
 
 #Import solver
-from preprocessing_data import normalize_features
-reload(preprocessing_data)
+import preprocessing_data as prep
+#reload(preprocessing_data)
 
 #from coordinate_descent import lasso_cyclical_coordinate_descent
-import coordinate_descent
+import coordinate_descent as coor
 
 
 # # Step 2 : Load data 
 
-# In[ ]:
+# In[3]:
 
 """
 Load data in abalone_df Pandas DataFrame
@@ -55,7 +55,7 @@ abalone_df = pd.read_csv("../../data/abalone/Dataset.data", delimiter=" ",
 
 # # Step 3 : Start exploring dataset 
 
-# In[93]:
+# In[4]:
 
 #First of all lets look how big the dataset is using len function
 print "Number of Observations in the dataset : " + str(len(abalone_df))
@@ -70,7 +70,7 @@ abalone_df.head()
 # * Look for High leverage and Influential observations in the code.
 # * Divide data into training, validation and test set
 
-# In[94]:
+# In[5]:
 
 """
 First of all normalize all the features present in the dataset. 
@@ -98,9 +98,9 @@ abalone_df_normalized, norms = normalize_features(abalone_df.as_matrix(columns=[
 # * Evaluate on test data
 # * Implement debiasing (lasso followed by least square (not regularization)
 
-# In[95]:
+# In[7]:
 
-weights = coordinate_descent.lasso_cyclical_coordinate_descent(normalized_simple_feature_matrix, output,
+weights = coordinate_descent.lasso_cyclical_coordinate_descent(abalone_df_normalized, output,
                                             initial_weights, l1_penalty, tolerance)
 
 
