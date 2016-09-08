@@ -10,7 +10,7 @@
 
 # # Step 1 : Import Necessary Libraries
 
-# In[91]:
+# In[ ]:
 
 """
 First of all we will import necessary packages required for our tasks of exploration,
@@ -40,7 +40,7 @@ import coordinate_descent
 
 # # Step 2 : Load data 
 
-# In[92]:
+# In[ ]:
 
 """
 Load data in abalone_df Pandas DataFrame
@@ -100,7 +100,7 @@ abalone_df_normalized, norms = normalize_features(abalone_df.as_matrix(columns=[
 
 # In[95]:
 
-weights = lasso_cyclical_coordinate_descent(normalized_simple_feature_matrix, output,
+weights = coordinate_descent.lasso_cyclical_coordinate_descent(normalized_simple_feature_matrix, output,
                                             initial_weights, l1_penalty, tolerance)
 
 
